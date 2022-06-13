@@ -28,9 +28,12 @@ class Counter extends Component {
 
     increment(by){
         console.log(`increased from child - ${by}`);
-        this.setState({
-            counter: this.state.counter + by
-        });
+        this.setState(
+            // Using fat arrow and prevState(good practice) to manage the increment state instead of this.state.counter
+            (prevState) => {
+            return { counter: prevState.counter + by }
+            }
+        );
     }
   }
 
@@ -68,9 +71,11 @@ class CounterButton extends Component {
     increment(){
         // update state here - counter ++
         // this.state.counter++; // do not mutate the state directly (bad practice) instead use setState
-        this.setState({
-            counter: this.state.counter + this.props.by
-        });
+        this.setState(
+            (prevState) => {
+                return { counter: prevState.counter + this.props.by }
+            }
+        );
         // console.log('increased');
         this.props.incrementMethod(this.props.by);
     }
