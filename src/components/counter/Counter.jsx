@@ -11,19 +11,28 @@ class Counter extends Component {
             counter: 0
         }
 
-        this.increment = this.increment.bind(this)
+        this.increment = this.increment.bind(this);
+        this.decrement = this.decrement.bind(this);
+        this.reset = this.reset.bind(this);
     }
 
     render() {
       return (
         <div className="counter">      
-          <CounterButton incrementMethod={this.increment} />
-          <CounterButton by={2} incrementMethod={this.increment} />
-          <CounterButton by={5} incrementMethod={this.increment} />
-          <CounterButton by={10} incrementMethod={this.increment} />
+          <CounterButton incrementMethod={this.increment} decrementMethod={this.decrement} />
+          <CounterButton by={2} incrementMethod={this.increment} decrementMethod={this.decrement} />
+          <CounterButton by={5} incrementMethod={this.increment} decrementMethod={this.decrement} />
+          <CounterButton by={10} incrementMethod={this.increment} decrementMethod={this.decrement} />
           <span className="count">{this.state.counter} Counted</span>
+          <div>
+            <button className="reset" onClick={this.reset}>Reset</button>
+          </div>
         </div>
       );
+    }
+
+    reset() {
+        this.setState({ counter: 0 });
     }
 
     increment(by){
@@ -32,6 +41,16 @@ class Counter extends Component {
             // Using fat arrow and prevState(good practice) to manage the increment state instead of this.state.counter
             (prevState) => {
             return { counter: prevState.counter + by }
+            }
+        );
+    }
+
+    decrement(by){
+        console.log(`increased from child - ${by}`);
+        this.setState(
+            // Using fat arrow and prevState(good practice) to manage the increment state instead of this.state.counter
+            (prevState) => {
+            return { counter: prevState.counter - by }
             }
         );
     }
@@ -51,7 +70,8 @@ class CounterButton extends Component {
         // Binding (this) in the increment methods
         // By using the fat arrow in function and redering we don't have to bind (this) 
         // to the method [it prevents the need to binding]
-        this.increment = this.increment.bind(this)
+        this.increment = this.increment.bind(this);
+        this.decrement = this.decrement.bind(this);
     }
 
     // render = () => { // fat arrow
@@ -60,6 +80,7 @@ class CounterButton extends Component {
         return(
             <div className="counter">
                 <button onClick={this.increment}>+{this.props.by}</button>
+                <button onClick={this.decrement}>-{this.props.by}</button>
                 {/* <span className="count" 
                     // style={style}
                 >{this.state.counter} Counted</span> */}
@@ -78,6 +99,15 @@ class CounterButton extends Component {
         );
         // console.log('increased');
         this.props.incrementMethod(this.props.by);
+    }
+
+    decrement(){
+        this.setState(
+            (prevState) => {
+                return { counter: prevState.counter - this.props.by }
+            }
+        );
+        this.props.decrementMethod(this.props.by);
     }
 }
 
