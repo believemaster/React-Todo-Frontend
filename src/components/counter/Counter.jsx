@@ -19,10 +19,13 @@ class Counter extends Component {
 
     // render = () => { // fat arrow
     render() {
+        const style = {fontSize: "60px"};
         return(
             <div className="counter">
                 <button onClick={this.increment}>+1</button>
-                <span className="count">{this.state.counter} Counted</span>
+                <span className="count" 
+                    style={style}
+                >{this.state.counter} Counted</span>
             </div>
         );
     }
