@@ -10,7 +10,11 @@ function App() {
   return (
     <div className="App">      
       {/* <LearningComponents/> uncomment if want to test */}
-      <Counter/>
+      {/* *********************************************** */}
+      {/* Indivisual counter with indivisual state (using props) | props are like data-x in html */}
+      <Counter by={1} />
+      <Counter by={5} />
+      <Counter by={10} />
     </div>
   );
 }

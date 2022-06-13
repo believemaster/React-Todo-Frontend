@@ -19,12 +19,12 @@ class Counter extends Component {
 
     // render = () => { // fat arrow
     render() {
-        const style = {fontSize: "60px"};
+        // const style = {fontSize: "60px"};
         return(
             <div className="counter">
-                <button onClick={this.increment}>+1</button>
+                <button onClick={this.increment}>+{this.props.by}</button>
                 <span className="count" 
-                    style={style}
+                    // style={style}
                 >{this.state.counter} Counted</span>
             </div>
         );
@@ -35,7 +35,7 @@ class Counter extends Component {
         // update state here - counter ++
         // this.state.counter++; // do not mutate the state directly (bad practice) instead use setState
         this.setState({
-            counter: this.state.counter + 1
+            counter: this.state.counter + this.props.by
         });
         console.log('increased');
     }
