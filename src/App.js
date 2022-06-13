@@ -19,6 +19,7 @@ class LearningComponents extends Component {
   render() {
     return(
       // Components must be wrappedn inside divs
+      // All HTML elements in JSX should be in small letters
       <div className='LearningComponents'>
         This is APP component which is created using a function component
         <FirstComponent/>
