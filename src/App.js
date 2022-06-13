@@ -12,11 +12,12 @@ function App() {
       {/* <LearningComponents/> uncomment if want to test */}
       {/* *********************************************** */}
       {/* Indivisual counter with indivisual state (using props) | props are like data-x in html */}
-      <Counter />
       {/* <Counter by="2" /> this will give error in console as propType is checked in jsx*/}
-      <Counter by={2} />
-      <Counter by={5} />
-      <Counter by={10} />
+      {/* <CounterButton by={2} />
+      <CounterButton by={5} />
+      <CounterButton by={10} /> */}
+      {/* *********************************************** */}
+      <Counter />
     </div>
   );
 }
