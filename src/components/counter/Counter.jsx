@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import './Counter.css';
 
 class Counter extends Component {
@@ -39,6 +40,16 @@ class Counter extends Component {
         });
         console.log('increased');
     }
+}
+
+// Defining default property of component so if not by was provided in component it will be 1 byDefault
+Counter.defaultProps = {
+    by: 1
+}
+
+// Defining propTypes for the component to check the prop type if not number then throw error in console
+Counter.propTypes = {
+    by: PropTypes.number
 }
 
 // Can be called this way if function based component but class based components are easy for states
