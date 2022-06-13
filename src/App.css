@@ -1,5 +1,29 @@
+/* App.js is for the app component */
+
 .App {
   text-align: center;
+  border: 5px solid #282c34;
+  padding: 50px;
+  margin-top: 25px;
+  font-size: 25px;
+}
+
+.AppClassComp1 {
+  text-align: center;
+  border: 5px solid #61dafb;
+  font-size: 25px;
+}
+
+.AppClassComp2 {
+  text-align: center;
+  border: 5px solid #8c3f8c;
+  font-size: 25px;
+}
+
+.AppClassComp3 {
+  text-align: center;
+  border: 5px solid #99ccaaee;
+  font-size: 25px;
 }
 
 .App-logo {
