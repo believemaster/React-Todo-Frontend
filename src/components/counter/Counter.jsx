@@ -12,9 +12,12 @@ class Counter extends Component {
         }
 
         // Binding (this) in the increment methods
+        // By using the fat arrow in function and redering we don't have to bind (this) 
+        // to the method [it prevents the need to binding]
         this.increment = this.increment.bind(this)
     }
 
+    // render = () => { // fat arrow
     render() {
         return(
             <div className="counter">
@@ -24,7 +27,8 @@ class Counter extends Component {
         );
     }
 
-    increment() {
+    // increment = () => {  // fat arrow
+    increment(){
         // update state here - counter ++
         // this.state.counter++; // do not mutate the state directly (bad practice) instead use setState
         this.setState({
