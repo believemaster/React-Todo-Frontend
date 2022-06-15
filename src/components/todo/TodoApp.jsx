@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, 
+         Link, 
          Route,
          Switch
        } from "react-router-dom";
@@ -40,10 +41,10 @@ class ListTodosComponent extends Component {
         this.state = {
             todos : 
             [
-                { id: 1, description: "Learn React" },
-                { id: 2, description: "Learn Springboot" },
-                { id: 3, description: "Learn Vue" },
-                { id: 4, description: "Learn Laravel" },
+                { id: 1, description: "Learn React", done: false, targetDate: new Date() },
+                { id: 2, description: "Learn Springboot", done: false, targetDate: new Date() },
+                { id: 3, description: "Learn Vue", done: false, targetDate: new Date() },
+                { id: 4, description: "Learn Laravel", done: false, targetDate: new Date() },
             ]
         }
     }
@@ -57,15 +58,19 @@ class ListTodosComponent extends Component {
                         <tr>
                             <th>ID</th>
                             <th>Description</th>
+                            <th>Done</th>
+                            <th>Target Date</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             this.state.todos.map(
-                                todo => 
+                                (todo) => 
                                 <tr>
                                     <td>{ todo.id }</td>
                                     <td>{ todo.description }</td>
+                                    <td>{ todo.done.toString() }</td>
+                                    <td>{ todo.targetDate.toString() }</td>
                                 </tr>
                             )
                         }
@@ -80,7 +85,7 @@ class WelcomeComponent extends Component {
     render() {
         return(
             <div>
-                Welcome { this.props.match.params.name }
+                Welcome { this.props.match.params.name }. You can manage your <Link to="/todos">todos here</Link>
             </div>
         );
     }
