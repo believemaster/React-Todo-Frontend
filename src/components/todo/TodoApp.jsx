@@ -13,11 +13,14 @@ class TodoApp extends Component {
         return(
             <div className="TodoApp">
                 <Router>
-                    <Switch>
-                        <Route path="/" exact component={ LoginComponent } />
-                        <Route path="/login" component={ LoginComponent } />
-                        <Route path="/welcome" component={ WelcomeComponent } />
-                    </Switch>
+                    <>
+                        <Switch>
+                            <Route path="/" exact component={ LoginComponent } />
+                            <Route path="/login" component={ LoginComponent } />
+                            <Route path="/welcome" component={ WelcomeComponent } />
+                            <Route path="" component={ ErrorComponent } />
+                        </Switch>
+                    </>
                 </Router>
 
                 {/* <LoginComponent />
@@ -36,6 +39,15 @@ class WelcomeComponent extends Component {
             </div>
         );
     }
+}
+
+function ErrorComponent() {
+    return(
+        <div>
+            <h3>Error 404</h3>
+            <p>Sorry, it seems the issue with the URL or some other error. Contact admin support.</p>
+        </div>
+    );
 }
 
 class LoginComponent extends Component {
