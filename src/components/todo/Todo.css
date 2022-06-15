@@ -5,3 +5,15 @@ button {
     border: 3px solid gray;
     cursor: pointer;
 }
+
+input {
+    border-radius: 5px;
+}
+
+.valid {
+    color: green;
+}
+
+.invalid {
+    color: red;
+}
