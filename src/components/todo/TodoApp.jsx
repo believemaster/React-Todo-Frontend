@@ -1,17 +1,23 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, 
+         Route,
+         Switch
+       } from "react-router-dom";
 import "./Todo.css";
+
+// const history = createBrowserHistory();
 
 class TodoApp extends Component {
     render() {
+        
         return(
             <div className="TodoApp">
                 <Router>
-                    <Routes>
-                        <Route path="/" exact element={ <LoginComponent/> } />
-                        <Route path="/login" element={ <LoginComponent/> } />
-                        <Route path="/welcome" element={ <WelcomeComponent/> } />
-                    </Routes>
+                    <Switch>
+                        <Route path="/" exact component={ LoginComponent } />
+                        <Route path="/login" component={ LoginComponent } />
+                        <Route path="/welcome" component={ WelcomeComponent } />
+                    </Switch>
                 </Router>
 
                 {/* <LoginComponent />
@@ -47,7 +53,7 @@ class LoginComponent extends Component {
         // this.handleUsernameChange = this.handleUsernameChange.bind(this);
         // this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.login = this.login.bind(this);
+        this.loginClicked = this.loginClicked.bind(this);
     }
 
     handleChange(event) {
@@ -72,12 +78,13 @@ class LoginComponent extends Component {
     //     });
     // }
 
-    login() {
+    loginClicked() {
         if(this.state.username === "secret" && this.state.password === "secret") {
             console.log(this.state);
             console.log("Login Success");
-            this.setState({showSuccessMessage: true})
-            this.setState({hasLoginFailed: false})
+            this.props.history.push("/welcome");
+            // this.setState({showSuccessMessage: true})
+            // this.setState({hasLoginFailed: false})
         } else {
             console.log(this.state);
             console.log("Login Failed");
@@ -93,7 +100,7 @@ class LoginComponent extends Component {
                 <br />
                 Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
                 <br />
-                <button onClick={this.login}>Login</button>
+                <button onClick={this.loginClicked}>Login</button>
                 
                 {/* use anytype of code second way is simpler as: true && "string" returns string and when false then returns false */}
                 {/* <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} /> */}
