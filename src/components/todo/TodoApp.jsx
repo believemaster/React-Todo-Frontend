@@ -18,6 +18,7 @@ class TodoApp extends Component {
                             <Route path="/" exact component={ LoginComponent } />
                             <Route path="/login" component={ LoginComponent } />
                             <Route path="/welcome/:name" component={ WelcomeComponent } />
+                            <Route path="/todos" component={ ListTodosComponent } />
                             <Route path="" component={ ErrorComponent } />
                         </Switch>
                     </>
@@ -26,6 +27,50 @@ class TodoApp extends Component {
                 {/* <LoginComponent />
                 <WelcomeComponent /> */}
         
+            </div>
+        );
+    }
+}
+
+class ListTodosComponent extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            todos : 
+            [
+                { id: 1, description: "Learn React" },
+                { id: 2, description: "Learn Springboot" },
+                { id: 3, description: "Learn Vue" },
+                { id: 4, description: "Learn Laravel" },
+            ]
+        }
+    }
+
+    render() {
+        return(
+            <div>
+                <h1>List Todos</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            this.state.todos.map(
+                                todo => 
+                                <tr>
+                                    <td>{ todo.id }</td>
+                                    <td>{ todo.description }</td>
+                                </tr>
+                            )
+                        }
+                    </tbody>
+                </table>
             </div>
         );
     }
