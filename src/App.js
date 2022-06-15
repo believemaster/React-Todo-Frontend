@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { Component } from 'react';
+import React, { Component } from "react";
 import FirstComponent from '../src/components/learning-examples/FirstComponent';
 import SecondComponent, { ThirdComponent } from '../src/components/learning-examples/SecondAndThirdComponent';
 // import Counter from './components/counter/Counter';
