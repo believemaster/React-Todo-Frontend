@@ -17,7 +17,7 @@ class TodoApp extends Component {
                         <Switch>
                             <Route path="/" exact component={ LoginComponent } />
                             <Route path="/login" component={ LoginComponent } />
-                            <Route path="/welcome" component={ WelcomeComponent } />
+                            <Route path="/welcome/:name" component={ WelcomeComponent } />
                             <Route path="" component={ ErrorComponent } />
                         </Switch>
                     </>
@@ -35,7 +35,7 @@ class WelcomeComponent extends Component {
     render() {
         return(
             <div>
-                Welcome Secret
+                Welcome { this.props.match.params.name }
             </div>
         );
     }
@@ -94,7 +94,7 @@ class LoginComponent extends Component {
         if(this.state.username === "secret" && this.state.password === "secret") {
             console.log(this.state);
             console.log("Login Success");
-            this.props.history.push("/welcome");
+            this.props.history.push(`/welcome/${this.state.username}`);
             // this.setState({showSuccessMessage: true})
             // this.setState({hasLoginFailed: false})
         } else {
