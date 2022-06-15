@@ -74,8 +74,11 @@ class LoginComponent extends Component {
                 <br />
                 <button onClick={this.login}>Login</button>
                 
-                <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} />
-                <ShowLoginSuccess showSuccessMessage={this.state.showSuccessMessage} />
+                {/* use anytype of code second way is simpler as: true && "string" returns string and when false then returns false */}
+                {/* <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} /> */}
+                { this.state.hasLoginFailed && <div className="invalid">Invalid Credentials</div> }
+                {/* <ShowLoginSuccess showSuccessMessage={this.state.showSuccessMessage} /> */}
+                { this.state.showSuccessMessage && <div className="valid">Login Successful</div> }
                 
             </div>
         );
@@ -83,20 +86,19 @@ class LoginComponent extends Component {
 
 }
 
-function ShowInvalidCredentials(props) {
-        if(props.hasLoginFailed) {
-            return <div className="invalid">Invalid Credentials</div>
+// function ShowInvalidCredentials(props) {
+//         if(props.hasLoginFailed) {
+//             return <div className="invalid">Invalid Credentials</div>
+//         } 
+//         return null
+// }
 
-        } 
-        return null
-}
-
-function ShowLoginSuccess(props) {
-    if(props.showSuccessMessage) {
-        return <div className="valid">Login Successful</div>
-    } 
-    return null
-}
+// function ShowLoginSuccess(props) {
+//     if(props.showSuccessMessage) {
+//         return <div className="valid">Login Successful</div>
+//     } 
+//     return null
+// }
 
 
 export default TodoApp;
