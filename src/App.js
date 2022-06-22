@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import './bootstrap.min.css';
 import React, { Component } from "react";
 import FirstComponent from '../src/components/learning-examples/FirstComponent';
 import SecondComponent, { ThirdComponent } from '../src/components/learning-examples/SecondAndThirdComponent';

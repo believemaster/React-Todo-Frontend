@@ -15,19 +15,65 @@ class TodoApp extends Component {
             <div className="TodoApp">
                 <Router>
                     <>
+                        <HeaderComponent />
                         <Switch>
                             <Route path="/" exact component={ LoginComponent } />
                             <Route path="/login" component={ LoginComponent } />
                             <Route path="/welcome/:name" component={ WelcomeComponent } />
                             <Route path="/todos" component={ ListTodosComponent } />
+                            <Route path="/logout" component={ LogoutComponent } />
                             <Route path="" component={ ErrorComponent } />
                         </Switch>
+                        <FooterComponent/>
                     </>
                 </Router>
 
                 {/* <LoginComponent />
                 <WelcomeComponent /> */}
         
+            </div>
+        );
+    }
+}
+
+class HeaderComponent extends Component {
+    render() {
+        return(
+            <header>
+                <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+                    <div><Link to="/" className="navbar-brand">Todo Yanik</Link></div>
+                    <ul className="navbar-nav">
+                        <li><Link className="nav-link" to="/welcome/secret">Home</Link></li>
+                        <li><Link className="nav-link" to="/todos">Todos</Link></li>
+                    </ul> 
+                    <ul className="navbar-nav navbar-collapse justify-content-end">
+                        <li><Link className="nav-link" to="/login">Login</Link></li>
+                        <li><Link className="nav-link" to="/logout">Logout</Link></li>
+                    </ul>
+                </nav>
+            </header>
+        );
+    }
+}
+
+class FooterComponent extends Component {
+    render() {
+        return(
+            <footer className="footer">
+                <span className="text-muted">All rights reserved 2022 @yanikkumar</span>
+            </footer>
+        );
+    }
+}
+
+class LogoutComponent extends Component {
+    render() {
+        return(
+            <div>
+                <h1>You're logged out</h1>
+                <div className="container">
+                    Thankyou for using our web-app
+                </div>
             </div>
         );
     }
