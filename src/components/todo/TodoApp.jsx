@@ -99,29 +99,31 @@ class ListTodosComponent extends Component {
         return(
             <div>
                 <h1>List Todos</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Description</th>
-                            <th>Done</th>
-                            <th>Target Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.state.todos.map(
-                                (todo) => 
-                                <tr>
-                                    <td>{ todo.id }</td>
-                                    <td>{ todo.description }</td>
-                                    <td>{ todo.done.toString() }</td>
-                                    <td>{ todo.targetDate.toString() }</td>
-                                </tr>
-                            )
-                        }
-                    </tbody>
-                </table>
+                <div className="container">
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Description</th>
+                                <th>Done</th>
+                                <th>Target Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.state.todos.map(
+                                    (todo) => 
+                                    <tr>
+                                        <td>{ todo.id }</td>
+                                        <td>{ todo.description }</td>
+                                        <td>{ todo.done.toString() }</td>
+                                        <td>{ todo.targetDate.toString() }</td>
+                                    </tr>
+                                )
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         );
     }
@@ -131,7 +133,10 @@ class WelcomeComponent extends Component {
     render() {
         return(
             <div>
-                Welcome { this.props.match.params.name }. You can manage your <Link to="/todos">todos here</Link>
+                <h1>Welcome</h1>
+                <div className="container">
+                    Welcome <b>{ this.props.match.params.name }</b>. You can manage your <Link to="/todos">todos here</Link>
+                </div>
             </div>
         );
     }
@@ -204,18 +209,24 @@ class LoginComponent extends Component {
     render() {
         return(
             <div>
-                Username: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
-                <br />
-                Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-                <br />
-                <button onClick={this.loginClicked}>Login</button>
-                
-                {/* use anytype of code second way is simpler as: true && "string" returns string and when false then returns false */}
-                {/* <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} /> */}
-                { this.state.hasLoginFailed && <div className="invalid">Invalid Credentials</div> }
-                {/* <ShowLoginSuccess showSuccessMessage={this.state.showSuccessMessage} /> */}
-                { this.state.showSuccessMessage && <div className="valid">Login Successful</div> }
-                
+                <div className="card">
+                    <div className="card-header">
+                        <h1>Login</h1>  
+                    </div>
+                    <div className="card-body">
+                        Username: <input className="form-control" type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+                        <br />
+                        Password: <input className="form-control" type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+                        <br />
+                        <button className="btn btn-success" onClick={this.loginClicked}>Login</button>
+                        
+                        {/* use anytype of code second way is simpler as: true && "string" returns string and when false then returns false */}
+                        {/* <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} /> */}
+                        { this.state.hasLoginFailed && <div className="alert alert-warning invalid">Invalid Credentials</div> }
+                        {/* <ShowLoginSuccess showSuccessMessage={this.state.showSuccessMessage} /> */}
+                        {/* { this.state.showSuccessMessage && <div className="valid">Login Successful</div> } */}
+                    </div>
+                </div>
             </div>
         );
     }
