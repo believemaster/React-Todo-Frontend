@@ -5,6 +5,7 @@ import { BrowserRouter as Router,
          Switch
        } from "react-router-dom";
 import "./Todo.css";
+import AuthenticationService from "./AuthenticationService.js";
 
 // const history = createBrowserHistory();
 
@@ -194,7 +195,8 @@ class LoginComponent extends Component {
     loginClicked() {
         if(this.state.username === "secret" && this.state.password === "secret") {
             console.log(this.state);
-            console.log("Login Success");
+            // console.log("Login Success");
+            AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password);
             this.props.history.push(`/welcome/${this.state.username}`);
             // this.setState({showSuccessMessage: true})
             // this.setState({hasLoginFailed: false})
