@@ -8,6 +8,15 @@ class AuthenticationService {
         sessionStorage.removeItem("authenticatedUser");
         console.log("Logged out");
     }
+
+    isUserLoggedIn() {
+        let user = sessionStorage.getItem("authenticatedUser");
+        if(user === null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
 
 export default new AuthenticationService();
