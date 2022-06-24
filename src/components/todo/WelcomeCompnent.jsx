@@ -34,21 +34,24 @@ class WelcomeComponent extends Component {
     }
 
     retrieveWelcomeMessage(){
-        HelloWorldService.executeHelloWorldService()
+        // HelloWorldService.executeHelloWorldService()
+        // .then(response => this.handleSuccessResponse(response))
+
+        HelloWorldService.executeHelloWorldBeanService()
         .then(response => this.handleSuccessResponse(response))
         // .catch()
     }
 
     handleSuccessResponse(response) {
         console.log(response); 
-        console.log(response.data);
-        console.log(response.status);
-        console.log(response.statusText);
-        console.log(response.headers);
-        console.log(response.config);
+        // console.log(response.data);
+        // console.log(response.status);
+        // console.log(response.statusText);
+        // console.log(response.headers);
+        // console.log(response.config);
         // response will be somthing like this: {data: 'Hello World', status: 200, statusText: '', headers: {…}, config: {…}, …}
         this.setState({ 
-            welcomeMessage: response.data // getting data from the response and setting the empty state to data
+            welcomeMessage: response.data.message // getting data.message from the response as we cannot call object directly and setting the empty state to data
         })    
     }
 
