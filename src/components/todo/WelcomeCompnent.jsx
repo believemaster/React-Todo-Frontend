@@ -9,15 +9,18 @@ class WelcomeComponent extends Component {
         this.retrieveWelcomeMessage = this.retrieveWelcomeMessage.bind(this);
 
         this.state = {
-            welcomeMessage: ""
+            welcomeMessage: "",
+            errorMessage: ""
         }
 
         this.handleSuccessResponse = this.handleSuccessResponse.bind(this);
+        this.handleError = this.handleError.bind(this);
     }
 
     render() {
         return(
             <div>
+                { this.state.errorMessage && <div className="alert alert-danger">{ this.state.errorMessage }</div> }
                 <h1>Welcome</h1>
                 <div className="container">
                     Welcome <b>{ this.props.match.params.name }</b>. You can manage your <Link to="/todos">todos here</Link>
@@ -42,7 +45,7 @@ class WelcomeComponent extends Component {
 
         HelloWorldService.executeHelloWorldPathVariableService(this.props.match.params.name)
         .then(response => this.handleSuccessResponse(response))
-        // .catch()
+        .catch(error => this.handleError(error))
     }
 
     handleSuccessResponse(response) {
@@ -56,6 +59,13 @@ class WelcomeComponent extends Component {
         this.setState({ 
             welcomeMessage: response.data.message // getting data.message from the response as we cannot call object directly and setting the empty state to data
         })    
+    }
+    
+    handleError(error) {
+        console.log(error.response);
+        this.setState({ 
+            errorMessage: error.response.data.message
+        })  
     }
 
 }
