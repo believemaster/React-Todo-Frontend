@@ -7,7 +7,7 @@ class ListTodosComponent extends Component {
 
     constructor(props) {
         super(props);
-
+        console.log("LifeCycle of react: Inside Constructor");
         this.state = {
             todos : 
             [
@@ -21,7 +21,11 @@ class ListTodosComponent extends Component {
 
     // Best practice in react is : when calling api don't call api in constructor because state is not initialized until api is called completely, therefore empty the state
 
+
+    // React lifecycle method called before render i.e. call api in component did mount instead of constructor
     componentDidMount() {
+        console.log("LifeCycle of react: Inside Component Did Mount");
+
         let username = AuthenticationService.getLoggedInUserName;
         TodoDataService.retrieveAllTodos(username)
         .then(
@@ -35,7 +39,21 @@ class ListTodosComponent extends Component {
         .catch()
     }
 
+    // Another lifecycle methods
+    componentWillUnmount() {
+        console.log("LifeCycle of react: Inside Component Did Unmount");
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("LifeCycle of react: Inside Should Component Update");
+        console.log(nextProps);
+        console.log(nextState);
+        return true; // if true then data will update but if false date will come but not shown (i.e. render is not called) i.e. we don't directly update state
+    }
+
     render() {
+        console.log("LifeCycle of react: Inside Render");
+
         return(
             <div>
                 <h1>List Todos</h1>
