@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, 
-         Link, 
-         Route,
-         Switch
-       } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Todo.css";
 import AuthenticationService from "./AuthenticationService.js";
 
