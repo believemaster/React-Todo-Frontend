@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./Todo.css";
+import TodoDataService from "../../api/todo/TodoDataService";
+import AuthenticationService from "./AuthenticationService";
 
 class ListTodosComponent extends Component {
 
@@ -9,12 +11,28 @@ class ListTodosComponent extends Component {
         this.state = {
             todos : 
             [
-                { id: 1, description: "Learn React", done: false, targetDate: new Date() },
-                { id: 2, description: "Learn Springboot", done: false, targetDate: new Date() },
-                { id: 3, description: "Learn Vue", done: false, targetDate: new Date() },
-                { id: 4, description: "Learn Laravel", done: false, targetDate: new Date() },
+                // { id: 1, description: "Learn React", done: false, targetDate: new Date() },
+                // { id: 2, description: "Learn Springboot", done: false, targetDate: new Date() },
+                // { id: 3, description: "Learn Vue", done: false, targetDate: new Date() },
+                // { id: 4, description: "Learn Laravel", done: false, targetDate: new Date() },
             ]
         }
+    }
+
+    // Best practice in react is : when calling api don't call api in constructor because state is not initialized until api is called completely, therefore empty the state
+
+    componentDidMount() {
+        let username = AuthenticationService.getLoggedInUserName;
+        TodoDataService.retrieveAllTodos(username)
+        .then(
+            response => {
+                console.log(response);
+                this.setState({
+                    todos: response.data
+                })
+            }
+        )
+        .catch()
     }
 
     render() {
