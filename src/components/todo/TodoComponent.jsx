@@ -8,17 +8,34 @@ class TodoComponent extends Component {
         super(props)
         this.state = {
             id: 1,
-            description: "Learn ReactJs",
+            description: "Learn ReactJs For Frontend",
             targetDate: moment(new Date()).format('YYYY-MM-DD')
         }
+
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    onSubmit(values) {
+        console.log(values);
     }
 
     render() {
+        // let description = this.state.description;
+        // let targetDate = this.state.targetDate;
+// or by destructuring
+        let { description, targetDate } = this.state;
+
         return(
             <div>
                 <h4>Todo Component for the id: { this.props.match.params.id }</h4>
                 <div className="container">
-                    <Formik>
+                    <Formik 
+                        initialValues={{
+                            description,
+                            targetDate
+                        }}
+                        onSubmit={this.onSubmit}
+                    >
                         {
                             (props) => (
                                 <Form>
