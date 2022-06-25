@@ -14,6 +14,7 @@ class ListTodosComponent extends Component {
         }
         
         this.deleteTodoClicked = this.deleteTodoClicked.bind(this);
+        this.updateTodoClicked = this.updateTodoClicked.bind(this);
     }
 
     // Best practice in react is : when calling api don't call api in constructor because state is not initialized until api is called completely, therefore empty the state
@@ -65,6 +66,20 @@ class ListTodosComponent extends Component {
         )
     }
 
+    // Update Todo
+    updateTodoClicked(id){
+        let username = AuthenticationService.getLoggedInUserName();
+        console.log('id: ' +id+ ', username: ' + username);
+        this.props.history.push(`/todos/${id}`);
+        // TodoDataService.deleteTodo(username, id)
+        // .then(
+        //     response => {
+        //         this.setState({message: `Delete of todo of id: ${id} is successful`});
+        //         this.refreshTodos();
+        //     }
+        // )
+    }
+
     render() {
         console.log("LifeCycle of react: Inside Render");
 
@@ -80,6 +95,7 @@ class ListTodosComponent extends Component {
                                 <th>Description</th>
                                 <th>Done</th>
                                 <th>Target Date</th>
+                                <th>Update</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -92,6 +108,7 @@ class ListTodosComponent extends Component {
                                         <td>{ todo.description }</td>
                                         <td>{ todo.done.toString() }</td>
                                         <td>{ todo.targetDate.toString() }</td>
+                                        <td><button className="btn btn-warning" onClick={() => this.updateTodoClicked(todo.id)}>Update</button></td>
                                         <td><button className="btn btn-danger" onClick={() => this.deleteTodoClicked(todo.id)}>Delete</button></td>
                                     </tr>
                                 )
