@@ -61,6 +61,7 @@ class LoginComponent extends Component {
     render() {
         return(
             <div>
+                <form>
                 <div className="card">
                     <div className="card-header">
                         <h1>Login</h1>  
@@ -79,6 +80,7 @@ class LoginComponent extends Component {
                         {/* { this.state.showSuccessMessage && <div className="valid">Login Successful</div> } */}
                     </div>
                 </div>
+                </form>
             </div>
         );
     }
