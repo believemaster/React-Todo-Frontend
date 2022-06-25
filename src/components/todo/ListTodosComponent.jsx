@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./Todo.css";
 import TodoDataService from "../../api/todo/TodoDataService";
 import AuthenticationService from "./AuthenticationService";
+import moment from "moment";
 
 class ListTodosComponent extends Component {
 
@@ -15,6 +16,7 @@ class ListTodosComponent extends Component {
         
         this.deleteTodoClicked = this.deleteTodoClicked.bind(this);
         this.updateTodoClicked = this.updateTodoClicked.bind(this);
+        this.addTodoClicked = this.addTodoClicked.bind(this);
     }
 
     // Best practice in react is : when calling api don't call api in constructor because state is not initialized until api is called completely, therefore empty the state
@@ -73,6 +75,11 @@ class ListTodosComponent extends Component {
         this.props.history.push(`/todos/${id}`);
     }
 
+    // Add Todo
+    addTodoClicked(){
+        this.props.history.push(`/todos/-1`);
+    }
+
     render() {
         console.log("LifeCycle of react: Inside Render");
 
@@ -100,7 +107,7 @@ class ListTodosComponent extends Component {
                                         <td>{ todo.id }</td>
                                         <td>{ todo.description }</td>
                                         <td>{ todo.done.toString() }</td>
-                                        <td>{ todo.targetDate.toString() }</td>
+                                        <td>{ moment(todo.targetDate).format("YYYY-MM-DD") }</td>
                                         <td><button className="btn btn-warning" onClick={() => this.updateTodoClicked(todo.id)}>Update</button></td>
                                         <td><button className="btn btn-danger" onClick={() => this.deleteTodoClicked(todo.id)}>Delete</button></td>
                                     </tr>
@@ -108,6 +115,9 @@ class ListTodosComponent extends Component {
                             }
                         </tbody>
                     </table>
+                    <div>
+                        <button className="btn btn-info" onClick={this.addTodoClicked}>Create Todo</button>
+                    </div>
                 </div>
             </div>
         );
